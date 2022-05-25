@@ -1,8 +1,12 @@
 <?php
 
 // Ajout du support du titre de la page
-add_action("after_setup_theme", function() {
+add_action("after_setup_theme", function()
+{
     add_theme_support("title-tag") ;
+    add_theme_support("post-thumbnails") ;
+    add_theme_support("menus") ;
+    register_nav_menu("header", "En tête du menu") ;
 }) ;
 
 function bootstrapblog_register_scripts()
@@ -48,3 +52,12 @@ function bootstrapblog_register_scripts()
 add_action("wp_enqueue_scripts", "bootstrapblog_register_scripts") ;
 
 add_filter("document_title_separator", function() { return "|"; }) ;
+
+function bootstrapblog_menu_class(array $classes): array
+{
+    $classes[] = "nav-item" ;
+
+    return $classes ;
+}
+
+add_filter("nav_menu_css_class", "bootstrapblog_menu_class") ;
