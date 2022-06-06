@@ -13,7 +13,12 @@
                         <div class="post-details">
                             <div class="post-meta d-flex justify-content-between">
                                 <div class="category">
-                                    <?php the_category() ; ?>
+                                    <?php foreach (get_the_category() as $postCategory): ?>
+                                        <a title="voir les articles de la catégorie <?= $postCategory->name ?>"
+                                           href="<?= get_category_link($postCategory) ; ?>">
+                                            <?= $postCategory->name ?>
+                                        </a>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
                             <h1><?php the_title() ; ?></h1>
