@@ -7,4 +7,6 @@ $application->run();
 
 $table_prefix = env('DB_TABLE_PREFIX', 'wp_');
 
+define( 'UPLOADS', 'wp-content/uploads' );
+
 require_once ABSPATH . 'wp-settings.php';
