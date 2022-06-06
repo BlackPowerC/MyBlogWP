@@ -49,6 +49,54 @@ function bootstrapblog_register_scripts()
     wp_enqueue_script("front") ;
 }
 
+function bootstrapblog_pagination_links()
+{
+    $html = "" ;
+    $links = paginate_links(["type" => "array"]) ;
+    if($links == null) {
+        return $html ;
+    }
+
+    $html .= '<nav aria-label="Page navigation example">' ;
+    $html .= '<ul class="pagination pagination-template d-flex justify-content-center">' ;
+    foreach ($links as $link)
+    {
+        $class = "page-link" ;
+        if(strpos($link, "current") !== false) {
+            $class .= " active" ;
+        }
+
+        if(strpos($link, "prev") !== false)
+        {
+            $domLink = new DOMDocument;
+            $loadingStatus = $domLink->loadHTML($link) ;
+            if($loadingStatus)
+            {
+                $url = $domLink->getElementsByTagName("a")->item(0)->attributes->getNamedItem("href")->nodeValue ;
+                $html .= '<li class="page-item"><a href="' .$url. '" class="' . $class . '"><i class="fa fa-angle-left"></i></a></li>' ;
+            }
+        }
+        elseif (strpos($link, "next") !== false)
+        {
+            $domLink = new DOMDocument;
+            $loadingStatus = $domLink->loadHTML($link) ;
+            if($loadingStatus)
+            {
+                $url = $domLink->getElementsByTagName("a")->item(0)->attributes->getNamedItem("href")->nodeValue;
+                $html .= '<li class="page-item"><a href="' . $url . '" class="' . $class . '"><i class="fa fa-angle-right"></i></a></li>';
+            }
+        }
+        else {
+            $html .= '<li class="page-item">' . str_replace("page-numbers", $class, $link). '</li>';
+        }
+    }
+
+    $html .= '</ul>';
+    $html .= '</nav>';
+
+    return $html ;
+}
+
 add_action("wp_enqueue_scripts", "bootstrapblog_register_scripts") ;
 
 add_filter("document_title_separator", function() { return "|"; }) ;
