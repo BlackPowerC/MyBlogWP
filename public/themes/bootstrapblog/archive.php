@@ -83,21 +83,41 @@
                 <!-- Widget [Latest Posts Widget]        -->
                 <div class="widget latest-posts">
                     <header>
-                        <h3 class="h6">Latest Posts</h3>
+                        <h3 class="h6">Les derniers articles</h3>
                     </header>
                     <div class="blog-posts">
-                        <a href="#">
-                            <div class="item d-flex align-items-center">
-                                <div class="image"><img src="img/small-thumbnail-1.jpg" alt="..." class="img-fluid">
-                                </div>
-                                <div class="title"><strong>Alberto Savoia Can Teach You About</strong>
-                                    <div class="d-flex align-items-center">
-                                        <div class="views"><i class="icon-eye"></i> 500</div>
-                                        <div class="comments"><i class="icon-comment"></i>12</div>
+                        <?php
+                            $numOfPosts = 6 ;
+                            $latests = wp_get_recent_posts([
+                                'numberposts'      => $numOfPosts,
+                                'orderby'          => 'post_date',
+                                'order'            => 'DESC',
+                                'post_type'        => 'post',
+                                'post_status'      => 'publish'
+                            ]) ;?>
+                        <?php if($latests === false): ?>
+                            Aucune article n'est disponible sur votre blog.
+                        <?php else: ?>
+                            <?php foreach ($latests as $post): ?>
+                                <?php $postId = $post["ID"] ; ?>
+                                <a href="<?php the_permalink($postId) ; ?>" title="<?= $post["post_title"] ; ?>">
+                                    <div class="item d-flex align-items-center">
+                                        <div class="image">
+                                            <img src="<?= get_the_post_thumbnail_url($postId) ?>" alt="..." class="img-fluid"/>
+                                        </div>
+                                        <div class="title">
+                                            <strong><?= $post["post_title"] ; ?></strong>
+                                            <div class="d-flex align-items-center">
+                                                <div class="views"><i class="icon-eye"></i> 500</div>
+                                                <div class="comments">
+                                                    <i class="icon-comment"></i> <?= get_comments_number($postId) ; ?>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </a>
+                                </a>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <!-- Widget [Categories Widget]-->
