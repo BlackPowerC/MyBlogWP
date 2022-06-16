@@ -111,44 +111,61 @@
     <!-- Latest Posts -->
     <section class="latest-posts">
         <div class="container">
+            <?php $numOfPosts = 3 ; ?>
             <header>
                 <h2>Derniers articles</h2>
-                <p class="text-big">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                <p class="text-big">Les <?= $numOfPosts ?> dernier(s) article(s)</p>
             </header>
             <div class="row">
-                <?php if(have_posts()) : ?>
-
-                    <?php while(have_posts()): the_post() ?>
+                <?php $latest = wp_get_recent_posts([
+                    'numberposts'      => $numOfPosts,
+                    'orderby'          => 'post_date',
+                    'order'            => 'DESC',
+                    'post_type'        => 'post',
+                    'post_status'      => 'publish'
+                ]) ; ?>
+                <?php if($latest === false): ?>
+                    <h2>Aucun article n'est disponible sur votre blog.</h2>
+                <?php else: ?>
+                    <?php foreach ($latest as $post): ?>
+                        <?php $postId = $post["ID"] ; ?>
                         <div class="post col-md-4">
                             <div class="post-thumbnail">
-                                <a href="<?php the_permalink() ?>">
-                                    <img src="<?php the_post_thumbnail_url('medium') ?>"
+                                <a href="<?= get_post_permalink($postId) ?>">
+                                    <img src="<?php echo get_the_post_thumbnail_url($postId,'medium') ?>"
                                          alt="..."
                                          class="img-fluid"/>
                                 </a>
                             </div>
                             <div class="post-details">
                                 <div class="post-meta d-flex justify-content-between">
-                                    <div class="date"><?php the_date("d M | Y") ; ?></div>
-                                    <div class="category">
-                                        <?php the_category() ; ?>
-                                    </div>
+                                    <div class="date"><?= get_post_datetime($postId)->format("d M | Y") ; ?></div>
+                                    <?php $categories = wp_get_post_categories($postId) ; ?>
+                                    <?php foreach ($categories as $category): ?>
+                                        <div class="category">
+                                            <a title="voir les articles de la catégorie <?= get_category($category)->name ?>"
+                                               href="<?= get_category_link($category) ?>">
+                                                <?= get_category($category)->name ?>
+                                            </a>
+                                        </div>
+                                    <?php endforeach; ?>
                                 </div>
-                                <a href="<?php the_permalink() ; ?>">
-                                    <h3 class="h4"><?php the_title() ; ?></h3>
+                                <a title="<?= $post['post_title'] ; ?>"
+                                   href="<?php the_permalink($postId) ; ?>">
+                                    <h3 class="h3"><?= $post['post_title'] ; ?></h3>
                                 </a>
-                                <p class="text-muted">
-                                    <?php the_excerpt() ; ?>
-                                    <a href="<?php the_permalink() ; ?>" title="lire l'article <?php the_title() ; ?>">
+                                <p class="text-muted" style="text-align: justify;">
+                                    <?= get_the_excerpt($postId) ; ?>
+                                    <br/><br/>
+                                    <a href="<?php the_permalink($postId) ; ?>"
+                                       title="lire l'article <?= $post['post_title'] ; ?>">
                                         Voir plus
                                     </a>
                                 </p>
                             </div>
                         </div>
-                    <?php endwhile ?>
-                <?php else: ?>
-                    <h2>Auncun article n'est disponible sur votre blog</h2>
-                <?php endif ?>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
     </section>
