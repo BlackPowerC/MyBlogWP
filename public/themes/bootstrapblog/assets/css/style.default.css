@@ -1468,16 +1468,16 @@ main.posts-listing .post-footer {
   color: #555;
 }
 
-.blog-post .add-comment {
+.blog-post .comment-respond {
   margin-top: 50px;
 }
 
-.blog-post .add-comment header {
+.blog-post .comment-respond #reply-title {
   margin-bottom: 30px;
 }
 
-.blog-post .add-comment input,
-.blog-post .add-comment textarea {
+.blog-post .comment-respond input,
+.blog-post .comment-respond textarea {
   background: none;
   border: none;
   border-bottom: 1px solid #ddd;
@@ -1486,8 +1486,12 @@ main.posts-listing .post-footer {
   font-family: "Open Sans", sans-serif;
 }
 
-.blog-post .add-comment input::-moz-placeholder,
-.blog-post .add-comment textarea::-moz-placeholder {
+.blog-post .comment-respond p[class|="comment"] input, .blog-post .comment-respond textarea {
+    width: 100% ;
+}
+
+.blog-post .comment-respond input::-moz-placeholder,
+.blog-post .comment-respond textarea::-moz-placeholder {
   font-weight: 400;
   font-size: 0.9em;
   color: #aaa;
@@ -1495,8 +1499,8 @@ main.posts-listing .post-footer {
   font-family: "Open Sans", sans-serif;
 }
 
-.blog-post .add-comment input::-webkit-input-placeholder,
-.blog-post .add-comment textarea::-webkit-input-placeholder {
+.blog-post .comment-respond input::-webkit-input-placeholder,
+.blog-post .comment-respond textarea::-webkit-input-placeholder {
   font-weight: 400;
   font-size: 0.9em;
   color: #aaa;
@@ -1504,8 +1508,8 @@ main.posts-listing .post-footer {
   font-family: "Open Sans", sans-serif;
 }
 
-.blog-post .add-comment input:-ms-input-placeholder,
-.blog-post .add-comment textarea:-ms-input-placeholder {
+.blog-post .comment-respond input:-ms-input-placeholder,
+.blog-post .comment-respond textarea:-ms-input-placeholder {
   font-weight: 400;
   font-size: 0.9em;
   color: #aaa;
@@ -1513,14 +1517,14 @@ main.posts-listing .post-footer {
   font-family: "Open Sans", sans-serif;
 }
 
-.blog-post .add-comment input:focus,
-.blog-post .add-comment textarea:focus {
+.blog-post .comment-respond input:focus,
+.blog-post .comment-respond textarea:focus {
   -webkit-box-shadow: none;
   box-shadow: none;
   border-bottom: 1px solid #999;
 }
 
-.blog-post .add-comment textarea {
+.blog-post .comment-respond textarea {
   min-height: 150px;
 }
 

@@ -38,7 +38,9 @@
                                     <div class="views">
                                         <i class="icon-eye"></i> 500
                                     </div>
-                                    <div class="comments meta-last"><i class="icon-comment"></i>12</div>
+                                    <div class="comments meta-last"><i class="icon-comment"></i>
+                                        <?= get_comments_number() ?>
+                                    </div>
                                 </div>
                             </div>
                             <!-- Le contenu de l'article -->
@@ -56,6 +58,13 @@
                                     <?php } ?>
                                 </div>
                             </div>
+                            <!-- Les commentaires -->
+                            <?php comments_template("/comments.php", true) ; ?>
+                            <?php
+                                comment_form([
+                                    "title_reply" => "Laisser un commentaire",
+                                    "label_submit" => "Poster le commentaire",
+                            ]) ; ?>
                         </div>
                     </div>
                 </div>
