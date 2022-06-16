@@ -69,6 +69,7 @@
                     </div>
                 </div>
             </main>
+            <?php get_template_part("content", "sidebar") ; ?>
         </div>
     </div>
 <?php endwhile; endif ?>
