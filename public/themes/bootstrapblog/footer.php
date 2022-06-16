@@ -3,53 +3,75 @@
     <footer class="main-footer">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-8">
                     <div class="logo">
-                        <h6 class="text-white">Bootstrap Blog</h6>
+                        <h6 class="text-white">Le Blog De Jordy</h6>
                     </div>
                     <div class="contact-details">
-                        <p>53 Broadway, Broklyn, NY 11249</p>
-                        <p>Phone: (020) 123 456 789</p>
-                        <p>Email: <a href="mailto:info@company.com">Info@Company.com</a></p>
+                        <p>Lomé-Sanguéra, Togo</p>
+                        <p>Phone: (+228) 99 47 07 78</p>
+                        <p>Email: <a href="mailto:jordy.fatigba@theopentrade.com">jordy.fatigba@theopentrade.com</a></p>
                         <ul class="social-menu">
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-behance"></i></a></li>
-                            <li class="list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                            <li class="list-inline-item">
+                                <a href="https://www.facebook.com/jordy.fatigba"><i class="fa fa-facebook"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://twitter.com/jordy_fatigba"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://www.linkedin.com/in/jordy-fatigba-5028ba99/"><i class="fa fa-linkedin"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="https://github.com/BlackPowerC"><i class="fa fa-github"></i></a>
+                            </li>
                         </ul>
                     </div>
                 </div>
+<!--                <div class="col-md-4">-->
+<!--                    <div class="menus d-flex">-->
+<!--                        <ul class="list-unstyled">-->
+<!--                            <li> <a href="#">My Account</a></li>-->
+<!--                            <li> <a href="#">Add Listing</a></li>-->
+<!--                            <li> <a href="#">Pricing</a></li>-->
+<!--                            <li> <a href="#">Privacy &amp; Policy</a></li>-->
+<!--                        </ul>-->
+<!--                        <ul class="list-unstyled">-->
+<!--                            <li> <a href="#">Our Partners</a></li>-->
+<!--                            <li> <a href="#">FAQ</a></li>-->
+<!--                            <li> <a href="#">How It Works</a></li>-->
+<!--                            <li> <a href="#">Contact</a></li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="col-md-4">
-                    <div class="menus d-flex">
-                        <ul class="list-unstyled">
-                            <li> <a href="#">My Account</a></li>
-                            <li> <a href="#">Add Listing</a></li>
-                            <li> <a href="#">Pricing</a></li>
-                            <li> <a href="#">Privacy &amp; Policy</a></li>
-                        </ul>
-                        <ul class="list-unstyled">
-                            <li> <a href="#">Our Partners</a></li>
-                            <li> <a href="#">FAQ</a></li>
-                            <li> <a href="#">How It Works</a></li>
-                            <li> <a href="#">Contact</a></li>
-                        </ul>
+                    <div class="latest-posts">
+                        <?php
+                            $numOfPosts = 3 ;
+                            $latests = wp_get_recent_posts([
+                                'numberposts'      => $numOfPosts,
+                                'orderby'          => 'post_date',
+                                'order'            => 'DESC',
+                                'post_type'        => 'post',
+                                'post_status'      => 'publish'
+                            ]) ;?>
+                        <?php if($latests === false): ?>
+                            Aucune article n'est disponible sur votre blog.
+                        <?php else: ?>
+                            <?php foreach ($latests as $post): ?>
+                                <?php $postId = $post["ID"] ; ?>
+                                <a href="<?php the_permalink($postId) ; ?>" title="<?= $post["post_title"] ; ?>">
+                                    <div class="post d-flex align-items-center">
+                                        <div class="image">
+                                            <img src="<?= get_the_post_thumbnail_url($postId) ?>" alt="..." class="img-fluid"/>
+                                        </div>
+                                        <div class="title">
+                                            <strong><?= $post["post_title"] ; ?></strong>
+                                        </div>
+                                    </div>
+                                </a>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="latest-posts"><a href="#">
-                            <div class="post d-flex align-items-center">
-                                <div class="image"><img src="img/small-thumbnail-1.jpg" alt="..." class="img-fluid"></div>
-                                <div class="title"><strong>Hotels for all budgets</strong><span class="date last-meta">October 26, 2016</span></div>
-                            </div></a><a href="#">
-                            <div class="post d-flex align-items-center">
-                                <div class="image"><img src="img/small-thumbnail-2.jpg" alt="..." class="img-fluid"></div>
-                                <div class="title"><strong>Great street atrs in London</strong><span class="date last-meta">October 26, 2016</span></div>
-                            </div></a><a href="#">
-                            <div class="post d-flex align-items-center">
-                                <div class="image"><img src="img/small-thumbnail-3.jpg" alt="..." class="img-fluid"></div>
-                                <div class="title"><strong>Best coffee shops in Sydney</strong><span class="date last-meta">October 26, 2016</span></div>
-                            </div></a></div>
                 </div>
             </div>
         </div>
@@ -57,11 +79,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <p>&copy; 2017. All rights reserved. Your great site.</p>
+                        <p>&copy; 2022. Tout droits réservés.</p>
                     </div>
                     <div class="col-md-6 text-right">
-                        <p>Template By <a href="https://bootstrapious.com/p/bootstrap-carousel" class="text-white">Bootstrapious</a>
-                            <!-- Please do not remove the backlink to Bootstrap Temple unless you purchase an attribution-free license @ Bootstrap Temple or support us at http://bootstrapious.com/donate. It is part of the license conditions. Thanks for understanding :)                         -->
+                        <p>Modèle par <a href="https://bootstrapious.com/p/bootstrap-carousel" class="text-white">Bootstrapious</a>
                         </p>
                     </div>
                 </div>
