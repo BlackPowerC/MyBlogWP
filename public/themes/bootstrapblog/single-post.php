@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <!-- Le contenu de l'article -->
-                            <div class="post-body">
+                            <div class="post-body" style="text-align: justify;">
                                 <?php the_content() ; ?>
                             </div>
                             <!-- Les étiquettes -->

@@ -20,7 +20,7 @@
                     <!-- Navbar Brand -->
                     <div class="navbar-header d-flex align-items-center justify-content-between">
                         <!-- Navbar Brand -->
-                        <a href="index.html" class="navbar-brand">
+                        <a href="#" class="navbar-brand">
                             <?php wp_title() ; ?>
                         </a>
                         <!-- Toggle Button-->

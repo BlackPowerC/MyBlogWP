@@ -57,8 +57,8 @@
                                     </div>
                                 </div>
                             <?php endwhile; ?>
-
                         <?php else: ?>
+                            Aucun article n'est disponible dans cette catégorie.
                         <?php endif; ?>
                     </div>
                     <?php if(have_posts()): ?>
