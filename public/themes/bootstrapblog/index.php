@@ -30,6 +30,73 @@
             </div>
         </div>
     </section>
+    <section class="featured-posts no-padding-top">
+        <div class="container">
+            <!-- Post-->
+            <?php
+                $i = 0 ;
+                if(have_posts()) : while(have_posts()) : the_post() ?>
+                    <div class="row d-flex align-items-stretch">
+                    <?php if(($i % 2) == 0): ?>
+                        <div class="image col-lg-5">
+                            <img src="<?php the_post_thumbnail_url("medium") ?>" alt="...">
+                        </div>
+                    <?php endif ?>
+                    <div class="text col-lg-7">
+                        <div class="text-inner d-flex align-items-center">
+                            <div class="content">
+                                <header class="post-header">
+                                    <div class="category">
+                                        <?php foreach (get_the_category() as $postCategory): ?>
+                                            <a title="voir les articles de la catégorie <?= $postCategory->name ?>"
+                                               href="<?= get_category_link($postCategory) ; ?>">
+                                                <?= $postCategory->name ?>
+                                            </a>
+                                        <?php endforeach; ?>
+                                    </div>
+                                    <a href="<?php the_permalink() ; ?>" title="<?php the_title() ; ?>">
+                                        <h3 class="h4"><?php the_title() ; ?></h3>
+                                    </a>
+                                </header>
+                                <p class="text-muted" style="text-align: justify;">
+                                    <?= get_the_excerpt() ; ?>
+                                    <br/><br/>
+                                    <a href="<?php the_permalink() ; ?>"
+                                       title="lire l'article <?php the_title() ; ?>">
+                                        Voir plus
+                                    </a>
+                                </p>
+                                <footer class="post-footer d-flex align-items-center">
+                                    <a href="#" class="author d-flex align-items-center flex-wrap">
+                                        <div class="avatar">
+                                            <img src="<?= get_template_directory_uri() ?>/assets/img/avatar-2.jpg" alt="..." class="img-fluid"/>
+                                        </div>
+                                        <div class="title">
+                                            <span><?php the_author(); ?></span>
+                                        </div>
+                                    </a>
+                                    <div class="date"><i class="icon-clock"></i>
+                                        <?php the_date("d M, Y") ?>
+                                    </div>
+                                    <div class="comments"><i class="icon-comment"></i>
+                                        <?= get_comments_number() ?>
+                                    </div>
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+                    <?php if(($i % 2) != 0): ?>
+                        <div class="image col-lg-5">
+                            <img src="<?php the_post_thumbnail_url("medium") ?>" alt="...">
+                        </div>
+                    <?php endif ?>
+                </div>
+                <?php $i++ ; ?>
+                <?php endwhile;
+                echo bootstrapblog_pagination_links();
+            endif; ?>
+        </div>
+    </section>
     <!-- Divider Section-->
     <section style="background-size: cover; background: url('<?php echo get_template_directory_uri() . "/assets/img/divider-bg.jpg" ?>') center bottom;" class="divider">
         <div class="container">
