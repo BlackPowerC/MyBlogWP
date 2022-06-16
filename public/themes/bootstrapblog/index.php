@@ -6,12 +6,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-7">
-                    <h1>Bootstrap 4 Blog - A free template by Bootstrap Temple</h1>
-                    <a href="#" class="hero-link">Discover More</a>
+                    <h1>Le blog de Jordy - Fièrement propulsé par Wordpress et Bootstrap</h1>
                 </div>
             </div>
             <a href=".intro" class="continue link-scroll">
-                <i class="fa fa-long-arrow-down"></i> Scroll Down
+                <i class="fa fa-long-arrow-down"></i> Défiler vers le bas
             </a>
         </div>
     </section>
@@ -20,8 +19,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <h2 class="h3">Some great intro here</h2>
-                    <p class="text-big">Place a nice <strong>introduction</strong> here <strong>to catch reader's attention</strong>. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderi.</p>
+                    <h2 class="h3">Des choses intéressantes ici</h2>
+                    <p class="text-big" style="text-align: justify;">
+                        Une belle <strong>introduction</strong> ici <strong>pour capturer votre attention</strong>.<br/>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderi.
+                    </p>
                 </div>
             </div>
         </div>
